@@ -1,0 +1,64 @@
+<style type="text/css">
+    @font-face {
+        font-family: "coliso";
+        font-style: normal;
+        font-weight: normal;
+        src: local("?"), url("coliso.ttf") format("truetype");
+    }
+    .Table
+    {
+        display: table;
+    }
+    .Title
+    {
+        display: table-caption;
+        text-align: center;
+        font-weight: bold;
+        font-size: larger;
+    }
+    .Heading
+    {
+        display: table-row;
+        font-weight: bold;
+        text-align: center;
+    }
+    .Row
+    {
+        display: table-row;
+        font-family: coliso;
+    }
+    .Cell
+    {
+        display: table-cell;
+        border: solid;
+        border-width: thin;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .column
+    {
+        float: left;
+        width: 20%;
+        display: block;
+        font-size: 8.8pt;
+    }
+    .columnHand
+    {
+        float: left;
+        width: 10%;
+        display: block;
+        font-size: 11pt;
+        
+    }
+
+    table, th, td {
+        text-align: center;
+        border: 1px solid black;
+        padding: 2px;
+
+    }   
+    td {
+        font-family: coliso;
+        font-size: 15pt;
+    }
+</style>

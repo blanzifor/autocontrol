@@ -372,3 +372,4 @@ $config['proxy_ips'] = '';
 |Route to the file with the contents.
 */
 $config['file_path'] = '/home/lucas/Descargas/caliauto.txt';
+//$config['file_path'] = '//servidor1/externo/caliauto.txt';

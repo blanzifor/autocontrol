@@ -156,9 +156,9 @@ switch ( $sapi ) {
     $paper = DOMPDF_DEFAULT_PAPER_SIZE;
 
   if ( isset($opts["o"]) )
-    $orientation = $opts["o"];
-  else
     $orientation = "portrait";
+  else
+    $orientation = $opts["o"];
 
   if ( isset($opts["b"]) )
     $base_path = $opts["b"];

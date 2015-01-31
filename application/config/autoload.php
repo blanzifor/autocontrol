@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array("parser","dompdf_lib");
+$autoload['libraries'] = array("parser","dompdf_lib", "html2pdf");
 
 
 /*
@@ -64,7 +64,7 @@ $autoload['libraries'] = array("parser","dompdf_lib");
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('file');
+$autoload['helper'] = array('file','html','url');
 
 
 /*
