@@ -5,24 +5,25 @@
  <bookmark title="Document" level="0" ></bookmark>
 	<table cellspacing="0" style="width: 100%;">
         <tr>
-			<th colspan="19" style="width: 100%; font-size: 8pt; text-align: right;">Formato AUTO.001 Rev.4 </th>
+			<th colspan="19" style="width: 100%; font-size: 8pt; text-align: right; border: none;">Formato AUTO.001 Rev.4 </th>
 		</tr>
 		<tr>
-            <th colspan="3" style="width: 15%;">
+            <th colspan="4" style="width: 15%; border:none;">
                 <?php 
-                echo '<img style="width: 100%" src="'.base_url().'/images/logo.jpg" alt="Logo CHC" >';
+                echo '<img style="width: 98%" src="'.base_url().'/images/logo.jpg" alt="Logo CHC" >';
                 ?>
             </th>
-            <th> Hoja nº: </th>
-            <th></th>
-            <th colspan="5">Fecha Producción:</th>
+            <th colspan="7" style="border:none;"> Hoja nº:________ </th>
+            <th colspan="4" style="text-align:left; border:none;">Fecha Producción:____/_____/______</th>
+            <th colspan="3" style="text-align:right; border:none;">Semana:_________ </th>
         </tr>
         <tr>
-            <th colspan="14" style="width: 50%; text-align: left; font-weight: bold; font-size: 15pt; padding-left: 30pt;">
+            <th colspan="11" style="width: 50%; text-align: left; font-weight: bold; font-size: 15pt; border:none">
                 Autocontrol Producción Vidrio: AUTOMOCION R43
-				
             </th>
+            <th colspan="4" style="text-align:left; border:none;">Parametros Horno Correctos (si/no): ____</th>
         </tr>
+        <tr></tr>
   
 		<TR>
 
@@ -47,6 +48,7 @@
 		</TR>
 	
 {bl_pedidos}
+	<form>
 	<TR>
 		<TD>{0} </TD>
 		<TD>{1} </TD>
@@ -67,6 +69,7 @@
 		<TD>{16}</TD>
 		<TD>{17}</TD>
 	</TR>
+	</form>
 {/bl_pedidos}
 </table>
 

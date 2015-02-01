@@ -13,7 +13,9 @@ class autocontrol extends CI_Controller {
 
         $textos =  array(
                 'bl_cabecera' => $header,    
-                'bl_pedidos' => $lines, );
+                'bl_pedidos' => $lines, 
+                'FlechaLocal' => $lines[8],
+                );
 
 
         $html=$this->parser->parse('pdffile1',$textos);
@@ -30,7 +32,7 @@ class autocontrol extends CI_Controller {
 
         // convert to PDF
         //require_once(dirname(__FILE__).'/../html2pdf.class.php');
-        try
+         try
         {
             $html2pdf = new HTML2PDF('P', 'A4', 'fr');
             $html2pdf->pdf->SetDisplayMode('fullpage');
@@ -85,8 +87,18 @@ class autocontrol extends CI_Controller {
         //    }
         //        $combinado[] = $comb;   
         //}
-               
-        return $lines;
+           
+        foreach ($lines as $key => $value) {
+            foreach ($value as $clave => $valor) {
+                if ($valor == 'OK') {
+                    $valor = '<input type="checkbox" checked="checked" />';
+                }
+                $linesokt[$clave] = $valor;
+            }
+            $linesok[$key] = $linesokt;
+        }
+                        
+        return $linesok;
 
     }
     function extractHeader($file) {

@@ -5854,7 +5854,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
             switch($param['type'])
             {
                 case 'checkbox':
-                    $w = 3;
+                    $w = 4;
                     $h = $w;
                     if ($h<$f) $y+= ($f-$h)*0.5;
                     $checked = (isset($param['checked']) && $param['checked']=='checked');
@@ -5862,7 +5862,7 @@ if (!defined('__CLASS_HTML2PDF__')) {
                     break;
 
                 case 'radio':
-                    $w = 3;
+                    $w = 4;
                     $h = $w;
                     if ($h<$f) $y+= ($f-$h)*0.5;
                     $checked = (isset($param['checked']) && $param['checked']=='checked');

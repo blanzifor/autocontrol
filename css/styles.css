@@ -30,7 +30,7 @@
     .Cell
     {
         display: table-cell;
-        border: solid;
+        border: none;
         border-width: thin;
         padding-left: 5px;
         padding-right: 5px;
@@ -54,11 +54,17 @@
     table, th, td {
         text-align: center;
         border: 1px solid black;
-        padding: 2px;
+        padding: 0px;
 
     }   
     td {
         font-family: coliso;
         font-size: 15pt;
     }
+
+    th {
+        padding-top:5pt;
+        padding-bottom:5pt;
+    }
+
 </style>
