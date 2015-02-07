@@ -77,6 +77,7 @@ class autocontrol extends CI_Controller {
         foreach ($lines as $value) {
             foreach ($value as $key => $value) {
                 $comb[$header[0][$key]] = $value;
+                $comb['fuente'] = $this->randomFont();
             }
                 $combinado[] = $comb;   
         }
@@ -93,13 +94,14 @@ class autocontrol extends CI_Controller {
         }
         
         //Paginacion cada 25 lineas      
-        $linesok = array_chunk($linesok, 21);
+        $pageLines = 21;
+        $linesok = array_chunk($linesok, $pageLines);
+
         foreach ($linesok as $key => $value) {
             $linesok1[] = array('bl_pedidos' => $value);
         }
 
         $linesok = array('bl_paginas' => $linesok1);
-
         return $linesok;
 
     }
@@ -118,4 +120,24 @@ class autocontrol extends CI_Controller {
 
     }
 
+    function randomFont(){
+         $random = rand(0,3);
+
+        switch ($random) {
+            case '0':
+                $font = 'coliso';
+                break;
+            case '1':
+                $font = 'lucasfont';
+                break;
+            case '2':
+                $font = 'coliso3';
+                break;
+            case '3':
+                $font = 'jj';
+                break;
+        }
+
+        return $font;
+    }
 }

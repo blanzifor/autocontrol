@@ -51,24 +51,24 @@
 {bl_pedidos}
 	<form>
 	<TR>
-		<TD>{PEDIDO} </TD>
-		<TD>{UNIDADES} </TD>
-		<TD>{COLOR} </TD>
-		<TD>{FORMA} </TD>
-		<TD>{LONGITUD} </TD>
-		<TD>{ANCHURA} </TD>
-		<TD>{ESCUADRIA} </TD>
-		<TD>{ESPESOR} </TD>
-		<TD>{FLECHA LOCAL} </TD>
-		<TD>{FLECHA TOTAL} </TD>
-		<TD>{PUNTO ANALIZADO} </TD>
-		<TD>{FRAGMENTACION PARTICULAS}</TD>
-		<TD>{FRAGMENTACION ALARGADA}</TD>
-		<TD>{FRAGMENTACION P.GRUESAS}</TD>
-		<TD>{CANTOS}</TD>
-		<TD>{MARCADO AUTOMOCION}</TD>
-		<TD>{FECHA HORNO}</TD>
-		<TD>{FECHA CALIDAD}</TD>
+		<TD style="font-family:{fuente};">{PEDIDO} </TD>
+		<TD style="font-family:{fuente};">{UNIDADES} </TD>
+		<TD style="font-family:{fuente};">{COLOR} </TD>
+		<TD style="font-family:{fuente};">{FORMA} </TD>
+		<TD style="font-family:{fuente};">{LONGITUD} </TD>
+		<TD style="font-family:{fuente};">{ANCHURA} </TD>
+		<TD style="font-family:{fuente};">{ESCUADRIA} </TD>
+		<TD style="font-family:{fuente};">{ESPESOR} </TD>
+		<TD style="font-family:{fuente};">{FLECHA LOCAL} </TD>
+		<TD style="font-family:{fuente};">{FLECHA TOTAL} </TD>
+		<TD style="font-family:{fuente};">{PUNTO ANALIZADO} </TD>
+		<TD style="font-family:{fuente};">{FRAGMENTACION PARTICULAS}</TD>
+		<TD style="font-family:{fuente};">{FRAGMENTACION ALARGADA}</TD>
+		<TD style="font-family:{fuente};">{FRAGMENTACION P.GRUESAS}</TD>
+		<TD style="font-family:{fuente};">{CANTOS}</TD>
+		<TD style="font-family:{fuente};">{MARCADO AUTOMOCION}</TD>
+		<TD style="font-family:{fuente};">{FECHA HORNO}</TD>
+		<TD style="font-family:{fuente};">{FECHA CALIDAD}</TD>
 	</TR>
 	</form>
 {/bl_pedidos}
