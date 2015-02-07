@@ -9,14 +9,12 @@ class autocontrol extends CI_Controller {
 
         $file = $this->readerFile();
         $lines = $this->extractLines($file);
-        $header = $this->extractHeader($file);
-
+                
         $textos =  array(
-                'bl_cabecera' => $header,    
-                'bl_pedidos' => $lines, 
-                'FlechaLocal' => $lines[8],
+                'bl_pag'     => $lines['bl_paginas'],
+                //'bl_pedidos' => $lines[0]['bl_pedidos'], 
+                //'FlechaLocal' => $lines[8],
                 );
-
 
         $html=$this->parser->parse('pdffile1',$textos);
 
@@ -48,20 +46,13 @@ class autocontrol extends CI_Controller {
 
 
 
-
-
-
-
-
-
-
-
     /*----------------------------------------------------------
     | return Array asociativo con las líneas del fichero
     |
     */
     function readerFile(){
         $file = file($this->config->item('file_path'));
+            
         return $file;
     }
 
@@ -77,18 +68,21 @@ class autocontrol extends CI_Controller {
             if($key <> 0){        
                 $lines[] = explode('#', $value);
                 //$lines[] = preg_split("/[\t,]+/", $value);
+            }else{
+                 $header[] = explode('#', $value);
             }
         }
         
         // Convierto todo en un array asociativo donde las claves son la cabecera
-        //foreach ($lines as $value) {
-        //    foreach ($value as $key => $value) {
-        //        $comb[$header[0][$key]] = $value;
-        //    }
-        //        $combinado[] = $comb;   
-        //}
-           
-        foreach ($lines as $key => $value) {
+        foreach ($lines as $value) {
+            foreach ($value as $key => $value) {
+                $comb[$header[0][$key]] = $value;
+            }
+                $combinado[] = $comb;   
+        }
+
+        // Cambio los OK por un checkbox   
+        foreach ($combinado as $key => $value) {
             foreach ($value as $clave => $valor) {
                 if ($valor == 'OK') {
                     $valor = '<input type="checkbox" checked="checked" />';
@@ -97,7 +91,15 @@ class autocontrol extends CI_Controller {
             }
             $linesok[$key] = $linesokt;
         }
-                        
+        
+        //Paginacion cada 25 lineas      
+        $linesok = array_chunk($linesok, 21);
+        foreach ($linesok as $key => $value) {
+            $linesok1[] = array('bl_pedidos' => $value);
+        }
+
+        $linesok = array('bl_paginas' => $linesok1);
+
         return $linesok;
 
     }

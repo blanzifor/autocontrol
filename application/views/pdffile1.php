@@ -1,5 +1,6 @@
 <?=link_tag('css/styles.css')?>
 
+{bl_pag}
 
 <page orientation="paysage" >
  <bookmark title="Document" level="0" ></bookmark>
@@ -50,28 +51,36 @@
 {bl_pedidos}
 	<form>
 	<TR>
-		<TD>{0} </TD>
-		<TD>{1} </TD>
-		<TD>{2} </TD>
-		<TD>{3} </TD>
-		<TD>{4} </TD>
-		<TD>{5} </TD>
-		<TD>{6} </TD>
-		<TD>{7} </TD>
-		<TD>{8} </TD>
-		<TD>{9} </TD>
-		<TD>{10}</TD>
-		<TD>{11}</TD>
-		<TD>{12}</TD>
-		<TD>{13}</TD>
-		<TD>{14}</TD>
-		<TD>{15}</TD>
-		<TD>{16}</TD>
-		<TD>{17}</TD>
+		<TD>{PEDIDO} </TD>
+		<TD>{UNIDADES} </TD>
+		<TD>{COLOR} </TD>
+		<TD>{FORMA} </TD>
+		<TD>{LONGITUD} </TD>
+		<TD>{ANCHURA} </TD>
+		<TD>{ESCUADRIA} </TD>
+		<TD>{ESPESOR} </TD>
+		<TD>{FLECHA LOCAL} </TD>
+		<TD>{FLECHA TOTAL} </TD>
+		<TD>{PUNTO ANALIZADO} </TD>
+		<TD>{FRAGMENTACION PARTICULAS}</TD>
+		<TD>{FRAGMENTACION ALARGADA}</TD>
+		<TD>{FRAGMENTACION P.GRUESAS}</TD>
+		<TD>{CANTOS}</TD>
+		<TD>{MARCADO AUTOMOCION}</TD>
+		<TD>{FECHA HORNO}</TD>
+		<TD>{FECHA CALIDAD}</TD>
 	</TR>
 	</form>
 {/bl_pedidos}
+<tr>
+<th colspan=12 style="text-align:left; vertical-align:top">Observaciones</th>
+<th colspan=3 style="text-align:left;"> Firma: Responsable Horno <br /><br /><br />Fecha: </th>
+<th colspan=3 style="text-align:left;"> Firma: Calidad <br /><br /><br />Fecha:</th>
+
+</tr>
+
 </table>
 
 
 </page>
+{/bl_pag}
