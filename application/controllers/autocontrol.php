@@ -15,7 +15,7 @@ class autocontrol extends CI_Controller {
                 //'bl_pedidos' => $lines[0]['bl_pedidos'], 
                 //'FlechaLocal' => $lines[8],
                 );
-
+                
         $html=$this->parser->parse('pdffile1',$textos);
 
         
@@ -93,14 +93,41 @@ class autocontrol extends CI_Controller {
             $linesok[$key] = $linesokt;
         }
         
-        //Paginacion cada 25 lineas      
+        //Paginacion cada 21 lineas      
         $pageLines = 21;
         $linesok = array_chunk($linesok, $pageLines);
-
+                
+               
         foreach ($linesok as $key => $value) {
+            while(count($value)< $pageLines){
+                $value[] = array('PEDIDO' => '.', 
+                                'UNIDADES' => '',
+                                'COLOR' => '',
+                                'FORMA' => '',
+                                'LONGITUD' => '',
+                                'ANCHURA' => '',
+                                'ESCUADRIA' => '',
+                                'ESPESOR' => '',
+                                'FLECHA LOCAL' => '',
+                                'FLECHA TOTAL' => '',
+                                'PUNTO ANALIZADO' => '',
+                                'FRAGMENTACION PARTICULAS' => '',
+                                'FRAGMENTACION ALARGADA' => '',
+                                'FRAGMENTACION P.GRUESAS' => '',
+                                'CANTOS' => '',
+                                'MARCADO AUTOMOCION' => '',
+                                'FECHA HORNO' => '',
+                                'FECHA CALIDAD' => '',
+                                'fuente' => 'jj');
+                
+            }   
+                
             $linesok1[] = array('bl_pedidos' => $value);
+                       
+           
         }
 
+                
         $linesok = array('bl_paginas' => $linesok1);
         return $linesok;
 
