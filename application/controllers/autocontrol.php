@@ -78,16 +78,17 @@ class autocontrol extends CI_Controller {
             foreach ($value as $key => $value) {
                 $comb[$header[0][$key]] = $value;
                 $comb['fuente'] = $this->randomFont();
+                $comb['size'] = $this->randomFontSize();
             }
                 $combinado[] = $comb;   
         }
-
+               
         // Cambio los OK por un checkbox   
         foreach ($combinado as $key => $value) {
             foreach ($value as $clave => $valor) {
-                if ($valor == 'OK') {
-                    $valor = '<input type="checkbox" checked="checked" />';
-                }
+               // if ($valor == 'OK') {
+               //     $valor = '<input type="checkbox" checked="checked" />';
+               // }
                 $linesokt[$clave] = $valor;
             }
             $linesok[$key] = $linesokt;
@@ -100,7 +101,7 @@ class autocontrol extends CI_Controller {
                
         foreach ($linesok as $key => $value) {
             while(count($value)< $pageLines){
-                $value[] = array('PEDIDO' => '.', 
+                $value[] = array('PEDIDO' => '', 
                                 'UNIDADES' => '',
                                 'COLOR' => '',
                                 'FORMA' => '',
@@ -117,7 +118,7 @@ class autocontrol extends CI_Controller {
                                 'CANTOS' => '',
                                 'MARCADO AUTOMOCION' => '',
                                 'FECHA HORNO' => '',
-                                'FECHA CALIDAD' => '',
+                                'FECHA CALIDAD' => '.',
                                 'fuente' => 'jj');
                 
             }   
@@ -166,5 +167,15 @@ class autocontrol extends CI_Controller {
         }
 
         return $font;
+    }
+
+    function randomFontSize(){
+        $random = rand(14, 20);
+        
+        if (!$random % 2 == 0){
+            $random = $random + 1 ;
+        }
+        
+        return $random;
     }
 }
