@@ -8,6 +8,10 @@ class autocontrol extends CI_Controller {
         
 
         $file = $this->readerFile();
+        $file = $this->duplicateItem($file);
+                
+
+
         $lines = $this->extractLines($file);
                 
         $textos =  array(
@@ -52,7 +56,9 @@ class autocontrol extends CI_Controller {
     */
     function readerFile(){
         $file = file($this->config->item('file_path'));
-            
+        
+        array_pop($file);
+
         return $file;
     }
 
@@ -82,9 +88,10 @@ class autocontrol extends CI_Controller {
             }
                 $combinado[] = $comb;   
         }
-               
+            
+
         // Cambio los OK por un checkbox   
-        foreach ($combinado as $key => $value) {
+        /*foreach ($combinado as $key => $value) {
             foreach ($value as $clave => $valor) {
                // if ($valor == 'OK') {
                //     $valor = '<input type="checkbox" checked="checked" />';
@@ -92,11 +99,13 @@ class autocontrol extends CI_Controller {
                 $linesokt[$clave] = $valor;
             }
             $linesok[$key] = $linesokt;
-        }
+        }*/
+           
+                             
         
         //Paginacion cada 21 lineas      
         $pageLines = 21;
-        $linesok = array_chunk($linesok, $pageLines);
+        $linesok = array_chunk($combinado, $pageLines);
                 
                
         foreach ($linesok as $key => $value) {
@@ -124,7 +133,7 @@ class autocontrol extends CI_Controller {
             }   
                 
             $linesok1[] = array('bl_pedidos' => $value);
-                       
+
            
         }
 
@@ -172,10 +181,87 @@ class autocontrol extends CI_Controller {
     function randomFontSize(){
         $random = rand(14, 20);
         
-        if (!$random % 2 == 0){
+        if ($random % 2 != 0){
             $random = $random + 1 ;
         }
         
         return $random;
     }
+
+    
+    /* Buscando de forma aleatoria el hacer tachones. 
+    /* Busco un numero aleatorio divisible entre 7
+    /*
+    /*
+    */
+    function randomScratch(){
+        $random = rand(1,10);
+        if($random % 7 == 0){
+            $r = true;
+        }else{
+            $r = false;
+        }
+        return $r;
+    }
+
+
+    function duplicateItem($file){
+        foreach ($file as $key => $value) {
+            if ($key != 0 && $this->randomScratch() == true){
+                /* Si el aleatorio es true. Tengo que recortar la cadena value $value
+                   Tengo un array con la linea que tengo que Tachar */
+                $newValue = explode('#', $value);
+                $newValue[2] = $this->changeColor($newValue[2]);
+                $newValue[6] = '';
+                $newValue[7] = '';
+                $newValue[8] = '';
+                $newValue[9] = '';
+                $newValue[10] = '';
+                $newValue[11] = '';
+                $newValue[12] = '';
+                $newValue[13] = '';
+                $newValue[14] = '';
+                $newValue[15] = '';
+                $newValue[16] = '';
+                $newValue[17] = '';
+
+                $newValue = implode('#', $newValue);                        
+
+                $newfile[] = $newValue;
+                $newfile[] = $value;
+            }else
+                $newfile[] = $value;
+        }
+        return $newfile;
+    }
+
+    function changeColor($color0){
+
+        $randomColor = rand(1,5);
+        do {
+            switch ($randomColor) {
+                case '1':
+                    $colorf = 'INCOLORO';
+                    break;
+                case '2':
+                    $colorf = 'VERDE';
+                    break;
+                case '3':
+                    $colorf = 'VERDE VENUS';
+                    break;
+                case '4':
+                    $colorf = 'GRIS';
+                    break;
+                case '5':
+                    $colorf = 'BRONCE';
+                    break;
+            }   
+        } while ($color0 == $colorf);
+            
+        return $colorf;
+
+    }
+
+
+
 }
