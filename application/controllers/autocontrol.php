@@ -8,7 +8,9 @@ class autocontrol extends CI_Controller {
         
 
         $file = $this->readerFile();
+
         $file = $this->duplicateItem($file);
+
                 
 
 
@@ -19,7 +21,7 @@ class autocontrol extends CI_Controller {
                 //'bl_pedidos' => $lines[0]['bl_pedidos'], 
                 //'FlechaLocal' => $lines[8],
                 );
-                
+               
         $html=$this->parser->parse('pdffile1',$textos);
 
         
@@ -100,16 +102,50 @@ class autocontrol extends CI_Controller {
             }
             $linesok[$key] = $linesokt;
         }*/
-           
-                             
-        
-        //Paginacion cada 21 lineas      
-        $pageLines = 21;
-        $linesok = array_chunk($combinado, $pageLines);
+      
+
+        // Hacer los cortes segun se repitan las lineas iguales.
+        $fecha0 = $combinado[0]['FECHA HORNO'];
+        $contador = 0;
+        $suma = 0;
+        foreach ($combinado as $key => $value) {
+            $fecha = $value['FECHA HORNO'];
+
+            if($fecha == $fecha0){
+                $contador = $contador +1; 
+                $suma = $suma +1;
+            }else{
+            
+                if(!isset($contp)){
+                    $contp[$key]['lenght'] = $contador;
+                    $contp[$key]['offset'] = 0;
+                }else{
+                    $contp[$key]['lenght'] = $contador;
+                    $contp[$key]['offset'] = $suma - $contador -1;
+                }
+
+
+                $suma = $suma +1;
+
+                $contador = 0;
+                $fecha0= $value['FECHA HORNO'];
+            
+            }   
+        }
+        foreach ($contp as $key => $value) {
+                $linesok[] = array_slice($combinado, $value['offset'], $value['lenght']);
+            }
+
+
                 
-               
+        //Paginacion cada 21 lineas      
+        //$pageLines = 21;
+        //$linesok = array_chunk($combinado, $pageLines);
+                
+        // Relleno con lineas en blanco hasta completar las 21 lineas       
+        
         foreach ($linesok as $key => $value) {
-            while(count($value)< $pageLines){
+            while(count($value)< 21){
                 $value[] = array('PEDIDO' => '', 
                                 'UNIDADES' => '',
                                 'COLOR' => '',
@@ -136,9 +172,11 @@ class autocontrol extends CI_Controller {
 
            
         }
+        
 
-                
+
         $linesok = array('bl_paginas' => $linesok1);
+                
         return $linesok;
 
     }
@@ -237,8 +275,8 @@ class autocontrol extends CI_Controller {
 
     function changeColor($color0){
 
-        $randomColor = rand(1,5);
         do {
+        $randomColor = rand(1,5);
             switch ($randomColor) {
                 case '1':
                     $colorf = 'INCOLORO';
@@ -256,12 +294,11 @@ class autocontrol extends CI_Controller {
                     $colorf = 'BRONCE';
                     break;
             }   
+                       
         } while ($color0 == $colorf);
-            
         return $colorf;
 
     }
-
 
 
 }
