@@ -11,11 +11,8 @@ class autocontrol extends CI_Controller {
 
         $file = $this->duplicateItem($file);
 
-                
-
-
         $lines = $this->extractLines($file);
-                
+              
         $textos =  array(
                 'bl_pag'     => $lines['bl_paginas'],
                 //'bl_pedidos' => $lines[0]['bl_pedidos'], 
@@ -90,7 +87,7 @@ class autocontrol extends CI_Controller {
             }
                 $combinado[] = $comb;   
         }
-            
+
 
         // Cambio los OK por un checkbox   
         /*foreach ($combinado as $key => $value) {
@@ -108,6 +105,7 @@ class autocontrol extends CI_Controller {
         $fecha0 = $combinado[0]['FECHA HORNO'];
         $contador = 0;
         $suma = 0;
+
         foreach ($combinado as $key => $value) {
             $fecha = $value['FECHA HORNO'];
 
@@ -120,7 +118,7 @@ class autocontrol extends CI_Controller {
                     $contp[$key]['lenght'] = $contador;
                     $contp[$key]['offset'] = 0;
                 }else{
-                    $contp[$key]['lenght'] = $contador;
+                    $contp[$key]['lenght'] = $contador +1;
                     $contp[$key]['offset'] = $suma - $contador -1;
                 }
 
@@ -132,11 +130,13 @@ class autocontrol extends CI_Controller {
             
             }   
         }
+
+             
         foreach ($contp as $key => $value) {
                 $linesok[] = array_slice($combinado, $value['offset'], $value['lenght']);
             }
 
-
+             
                 
         //Paginacion cada 21 lineas      
         //$pageLines = 21;
@@ -163,7 +163,7 @@ class autocontrol extends CI_Controller {
                                 'CANTOS' => '',
                                 'MARCADO AUTOMOCION' => '',
                                 'FECHA HORNO' => '',
-                                'FECHA CALIDAD' => '.',
+                                'FECHA CALIDAD' => '&nbsp;',
                                 'fuente' => 'jj');
                 
             }   
@@ -244,6 +244,7 @@ class autocontrol extends CI_Controller {
 
 
     function duplicateItem($file){
+             
         foreach ($file as $key => $value) {
             if ($key != 0 && $this->randomScratch() == true){
                 /* Si el aleatorio es true. Tengo que recortar la cadena value $value
@@ -260,7 +261,7 @@ class autocontrol extends CI_Controller {
                 $newValue[13] = '';
                 $newValue[14] = '';
                 $newValue[15] = '';
-                $newValue[16] = '';
+                //$newValue[16] = '';
                 $newValue[17] = '';
 
                 $newValue = implode('#', $newValue);                        
