@@ -88,19 +88,7 @@ class autocontrol extends CI_Controller {
                 $combinado[] = $comb;   
         }
 
-
-        // Cambio los OK por un checkbox   
-        /*foreach ($combinado as $key => $value) {
-            foreach ($value as $clave => $valor) {
-               // if ($valor == 'OK') {
-               //     $valor = '<input type="checkbox" checked="checked" />';
-               // }
-                $linesokt[$clave] = $valor;
-            }
-            $linesok[$key] = $linesokt;
-        }*/
-      
-
+        
         // Hacer los cortes segun se repitan las lineas iguales.
         $fecha0 = $combinado[0]['FECHA HORNO'];
         $contador = 0;
@@ -136,16 +124,12 @@ class autocontrol extends CI_Controller {
                 $linesok[] = array_slice($combinado, $value['offset'], $value['lenght']);
             }
 
-             
-                
-        //Paginacion cada 21 lineas      
-        //$pageLines = 21;
-        //$linesok = array_chunk($combinado, $pageLines);
-                
-        // Relleno con lineas en blanco hasta completar las 21 lineas       
+        
+        // Relleno con lineas en blanco hasta completar las 21 lineas   
+        $linespp = $this->config->item('lines_per_page');    
         
         foreach ($linesok as $key => $value) {
-            while(count($value)< 21){
+            while(count($value)< $linespp){
                 $value[] = array('PEDIDO' => '', 
                                 'UNIDADES' => '',
                                 'COLOR' => '',
@@ -196,19 +180,28 @@ class autocontrol extends CI_Controller {
     }
 
     function randomFont(){
-         $random = rand(0,3);
+         $random = rand(0,6);
 
         switch ($random) {
             case '0':
-                $font = 'coliso';
+                $font = 'coliso3';
                 break;
             case '1':
                 $font = 'lucasfont';
                 break;
             case '2':
-                $font = 'coliso3';
+                $font = 'coliso4';
                 break;
             case '3':
+                $font = 'coliso5';
+                break;
+            case '4':
+                $font = 'coliso6';
+                break;
+            case '5':
+                $font = 'coliso7';
+                break;
+            case '6':
                 $font = 'jj';
                 break;
         }
@@ -217,7 +210,11 @@ class autocontrol extends CI_Controller {
     }
 
     function randomFontSize(){
-        $random = rand(14, 20);
+        $minSize =$this->config->item('min_font_size');
+        $maxSize =$this->config->item('max_font_size');
+
+
+        $random = rand($minSize, $maxSize);
         
         if ($random % 2 != 0){
             $random = $random + 1 ;
@@ -234,7 +231,9 @@ class autocontrol extends CI_Controller {
     */
     function randomScratch(){
         $random = rand(1,10);
-        if($random % 7 == 0){
+        $prime = $this->config->item('prime_number');
+
+        if($random % $prime == 0){
             $r = true;
         }else{
             $r = false;

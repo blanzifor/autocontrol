@@ -370,6 +370,30 @@ $config['proxy_ips'] = '';
 |
 |
 |Route to the file with the contents.
+|El fichero de texto debe tener una fila de cabecera con los campos separados por #
+|El resto de filas tambien separa los campos con #
+|Un ejemplo de fichero serían las siguientes líneas.
+
+PEDIDO#UNIDADES#COLOR#FORMA#LONGITUD#ANCHURA#ESCUADRIA#ESPESOR#FLECHA LOCAL#FLECHA TOTAL#PUNTO ANALIZADO#FRAGMENTACION PARTICULAS#FRAGMENTACION ALARGADA#FRAGMENTACION P.GRUESAS#CANTOS#MARCADO AUTOMOCION#FECHA HORNO#FECHA CALIDAD#
+18503#2#VERDE#SI#1330#250##5#OK#OK#1#OK#NO#NO#OK#OK#16-01-14#17-01-14
+18567#1#INCOLORO#SI#1260#390##5#OK#OK#1#OK#NO#NO#OK#OK#17-01-14#20-01-14
+18567#1#INCOLORO#SI#820#608##5#OK#OK#1#OK#NO#NO#OK#OK#17-01-14#20-01-14
 */
-$config['file_path'] = '/home/lucas/Descargas/caliauto.txt';
-//$config['file_path'] = '//servidor1/externo/caliauto.txt';
+
+//$config['file_path'] = '/home/lucas/Descargas/caliauto.txt';
+$config['file_path'] = '//servidor1/externo/caliauto.txt';
+
+// Tamaños máximo y mínimo de tamaño de letra
+$config['min_font_size'] = 14;
+$config['max_font_size'] = 20;
+
+/* Ramdon Scratch. El tachon aleatorio lo genero de la siguiente manera:
+| Elijo un numero aleatorio entre 1 y 10 y lo divido por la variable que definimos aqui debajo.
+| Si el resto es = 0 hacemos el tacho sino no. 
+| El numero siguiente debe ser un número primo. Cuanto más alto menor será la probabilidad de generar un tachón.
+| Valores posibles: 2, 3, 5, 7, 11, 13, 17, 19, 23 ...
+*/
+$config['prime_number'] = 7;
+
+// Número de lineas por hoja
+$config['lines_per_page'] = 25;
